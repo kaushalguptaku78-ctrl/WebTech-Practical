@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Manipulation Demo</title>
+</head>
+
+<body>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6a5af9, #ff6ec7);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 50px;
+            border-radius: 15px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 15px;
+            border: none;
+            background: #fff;
+            color: #6a5af9;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+             border-radius: CENTER;
+        }
+        button:hover {
+            background:orangered;
+        }
+</style>
+<h2 id="title">Original Heading</h2><br><br>
+
+<p class="msg">Old message</p><br><br>
+
+<button onclick="changeContent()">Change Text</button><br><br>
+
+<script>
+    function changeContent() {
+        // Using getElementById()
+        document.getElementById("title").innerHTML = "Heading Changed!";
+
+        // Using querySelector() for class
+        document.querySelector(".msg").innerHTML = "This text is updated using querySelector()";
+    }
+</script>
+
+</body>
+</html>

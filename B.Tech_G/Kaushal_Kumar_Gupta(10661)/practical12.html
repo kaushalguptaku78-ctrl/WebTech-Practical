@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+    <title>JavaScript Conditions and Loops</title>
+</head>
+
+<body>
+
+<h2>JavaScript: Conditional Statements & Looping</h2>
+<pre id="output"></pre>
+
+<script>
+    let msg = "";
+
+    // -------------------------------
+    //      CONDITIONAL STATEMENTS
+    // -------------------------------
+
+    let num = 15;
+
+    msg += "=== CONDITIONAL STATEMENTS ===\n";
+
+    // if
+    if (num > 10) {
+        msg += "if: Number is greater than 10\n";
+    }
+
+    // if…else
+    if (num % 2 === 0) {
+        msg += "if...else: Number is Even\n";
+    } else {
+        msg += "if...else: Number is Odd\n";
+    }
+
+    // else if
+    if (num < 0) {
+        msg += "else if: Number is Negative\n";
+    } else if (num === 0) {
+        msg += "else if: Number is Zero\n";
+    } else {
+        msg += "else if: Number is Positive\n";
+    }
+
+    // switch
+    let grade = "A";
+
+    msg += "\nswitch statement:\n";
+    switch (grade) {
+        case "A":
+            msg += "Excellent\n";
+            break;
+        case "B":
+            msg += "Good\n";
+            break;
+        case "C":
+            msg += "Average\n";
+            break;
+        default:
+            msg += "Invalid Grade\n";
+    }
+
+    // -------------------------------
+    //           LOOPS
+    // -------------------------------
+
+    msg += "\n=== LOOPS ===\n";
+
+    // for loop
+    msg += "\nfor loop (1 to 5):\n";
+    for (let i = 1; i <= 5; i++) {
+        msg += i + " ";
+    }
+
+    // while loop
+    msg += "\n\nwhile loop (1 to 5):\n";
+    let j = 1;
+    while (j <= 5) {
+        msg += j + " ";
+        j++;
+    }
+
+    // do…while loop
+    msg += "\n\ndo...while loop (1 to 5):\n";
+    let k = 1;
+    do {
+        msg += k + " ";
+        k++;
+    } while (k <= 5);
+
+    // display output on screen
+    document.getElementById("output").textContent = msg;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demonstration of CSS Selectors</title>
+
+    <!-- Internal CSS -->
+    <style>
+        /* =============================
+           UNIVERSAL SELECTOR
+           Applies to all HTML elements
+        ==============================*/
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 8px;
+            padding: 5px;
+        }
+
+        /* =============================
+           CLASS SELECTOR
+           Selects elements with class name ".highlight"
+        ==============================*/
+        .highlight {
+            color: red;
+            font-weight: bold;
+            background-color: #ffe5e5;
+            border-left: 4px solid red;
+        }
+
+        /* =============================
+           ID SELECTOR
+           Used for unique element with ID "special"
+        ==============================*/
+        #special {
+            color: darkblue;
+            background-color: lightyellow;
+            padding: 10px;
+            border: 2px dashed orange;
+        }
+
+        /* =============================
+           DESCENDANT SELECTOR
+           Selects <p> elements inside a <div>
+        ==============================*/
+        div p {
+            color: green;
+            font-style: italic;
+            background-color: #e8ffe8;
+            padding: 5px;
+        }
+
+        /* =============================
+           GROUP SELECTOR
+           Applies same style to multiple elements
+        ==============================*/
+        h1, h2, h3 {
+            text-align: center;
+            color: #0059b3;
+            text-decoration: underline;
+        }
+
+        /* Extra styling for layout */
+        body {
+            background-color: #f2f2f2;
+        }
+
+        .box {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            width: 80%;
+            margin: 10px auto;
+            box-shadow: 2px 2px 6px gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demonstration of Different CSS Selectors</h1>
+    <h2>Using Class, ID, Descendant, Group and Universal Selectors</h2>
+
+    <!-- CLASS SELECTOR EXAMPLE -->
+    <div class="box">
+        <h3>1. Class Selector Example</h3>
+        <p class="highlight">This paragraph is styled using a <b>class selector</b> with the class name "highlight".</p>
+        <p class="highlight">Multiple elements can share the same class and will have the same style.</p>
+    </div>
+    <!-- ID SELECTOR EXAMPLE -->
+    <div class="box">
+        <h3>2. ID Selector Example</h3>
+        <p id="special">This paragraph uses an <b>ID selector</b> with the ID "special". 
+        IDs are unique and used only for one element on a page.</p>
+    </div>
+    <!-- DESCENDANT SELECTOR EXAMPLE -->
+    <div class="box">
+        <h3>3. Descendant Selector Example</h3>
+        <div>
+            <p>This paragraph is inside a div, so it is styled using the <b>descendant selector</b> (div p).</p>
+            <p>Descendant selectors help style elements based on their hierarchy.</p>
+        </div>
+    </div>
+    <!-- GROUP SELECTOR EXAMPLE -->
+    <div class="box">
+        <h3>4. Group Selector Example</h3>
+        <h1>kaushal kumar gupta (H1)</h1>
+        <h2>kashinath kumar(H2)</h2>
+        <h3>kunal mandle (H3)</h3>
+        <p>All these headings share common styles using the <b>group selector</b> (h1, h2, h3).</p>
+    </div>
+
+    <!-- UNIVERSAL SELECTOR EXAMPLE -->
+    <div class="box">
+        <h3>5. Universal Selector Example</h3>
+        <p>The <b>universal selector (*)</b> applies basic styling (font, margin, padding) to every element on this web page.</p>
+    </div>
+
+    <footer style="text-align:center; font-size:14px; margin-top:20px;">
+        <b>Created by:</b> Kaushal Gupta<br>
+        <b>Topic:</b> Demonstration of Different CSS Selectors
+    </footer>
+</body>
+</html>

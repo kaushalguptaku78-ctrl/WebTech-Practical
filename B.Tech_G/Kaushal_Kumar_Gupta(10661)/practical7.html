@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Advanced CSS — Box Model & Background Demo</title>
+
+  <!-- Link to external stylesheet -->
+  <link rel="stylesheet" href="practical7.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">Advanced CSS: Box Model & Styling</h1>
+      <p class="site-subtitle">Demonstration of background images, borders, margin, padding, and box-sizing</p>
+    </div>
+  </header>
+
+  <!-- Hero with background image & overlay -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Hero Section</h2>
+      <p>Background image with gradient overlay, centered content, and responsive behavior.</p>
+      <a class="btn" href="#boxes">See Box Model</a>
+    </div>
+  </section>
+
+  <!-- Main content showing box model examples -->
+  <main class="container" id="boxes">
+    <h2 class="section-heading">Box Model Examples</h2>
+
+    <!-- Explanation card -->
+    <article class="card explanation">
+      <h3>What is the Box Model?</h3>
+      <p>
+        Each HTML element is a rectangular box composed of <strong>content</strong>, <strong>padding</strong>,
+        <strong>border</strong>, and <strong>margin</strong>. The <code>box-sizing</code> property affects whether
+        padding and border are included in the element's declared width/height.
+      </p>
+    </article>
+
+    <!-- Row of demo boxes -->
+    <section class="boxes-row">
+      <!-- Content-box (default) -->
+      <div class="demo-box content-box">
+        <h4>content-box</h4>
+        <p>Default box-sizing: padding & border add to element size.</p>
+        <div class="spec">
+          <p><strong>Width:</strong> 300px</p>
+          <p><strong>Padding:</strong> 24px</p>
+          <p><strong>Border:</strong> 6px</p>
+          <p><strong>Margin:</strong> 16px</p>
+        </div>
+      </div>
+
+      <!-- Border-box -->
+      <div class="demo-box border-box">
+        <h4>border-box</h4>
+        <p>Box-sizing: border & padding are included in declared width.</p>
+        <div class="spec">
+          <p><strong>Width:</strong> 300px</p>
+          <p><strong>Padding:</strong> 24px</p>
+          <p><strong>Border:</strong> 6px</p>
+          <p><strong>Margin:</strong> 16px</p>
+        </div>
+      </div>
+
+      <!-- Transparent background + border radius -->
+      <div class="demo-box elevated">
+        <h4>Elevated Card</h4>
+        <p>Rounded corners, box-shadow, and translucent background.</p>
+        <div class="spec">
+          <p><strong>Padding:</strong> 28px</p>
+          <p><strong>Border-radius:</strong> 12px</p>
+          <p><strong>Shadow:</strong> yes</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Background examples row -->
+    <section class="background-examples">
+      <div class="bg-sample bg-pattern">
+        <h4>Pattern + Repeat</h4>
+        <p>Small pattern image repeated across element background.</p>
+      </div>
+
+      <div class="bg-sample bg-cover">
+        <h4>Cover & Center</h4>
+        <p>Large photo scaled with <code>background-size: cover;</code>.</p>
+      </div>
+
+      <div class="bg-sample bg-fixed">
+        <h4>Fixed Background</h4>
+        <p>Background is fixed while content scrolls.</p>
+      </div>
+    </section>
+    <!-- Spacing demonstration -->
+    <article class="card spacing-demo">
+      <h3>Margins vs Padding</h3>
+      <div class="spacing-visual">
+        <div class="outer">Margin (outside)
+          <div class="inner">Border
+            <div class="content">Padding → content</div>
+          </div>
+        </div>
+      </div>
+      <p>
+        The <em>margin</em> separates an element from others. The <em>padding</em> is space inside the border, between
+        border and content.
+      </p>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> BY KAUSHAL KUMAR GUPTA</p>
+    </div>
+  </footer>
+  <script>
+    // small script to set the year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

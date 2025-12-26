@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User-Defined Functions & Scope Demo</title>
+</head>
+
+<body>
+
+<h2>User-Defined Functions & var, let, const Scope</h2>
+<pre id="result"></pre>
+
+<script>
+
+    let output = "";
+
+    /* --------------------------------------
+       1. USER-DEFINED FUNCTIONS
+    -------------------------------------- */
+
+    // Function without parameters
+    function greet() {
+        return "Hello, this is a user-defined function!";
+    }
+
+    // Function with parameters
+    function addNumbers(a, b) {
+        return a + b;
+    }
+
+    // Function for multiplication
+    function multiplyNumbers(a, b) {
+        return a * b;
+    }
+
+    // Invoking functions
+    output += "=== USER-DEFINED FUNCTIONS ===\n";
+    output += greet() + "\n";
+    output += "Addition (10 + 5) = " + addNumbers(10, 5) + "\n";
+    output += "Multiplication (4 × 3) = " + multiplyNumbers(4, 3) + "\n\n";
+
+
+    /* --------------------------------------
+       2. SCOPE: var, let, const
+    -------------------------------------- */
+
+    output += "=== SCOPE DEMONSTRATION ===\n";
+
+    var x = "var: Global or Function Scope";
+    let y = "let: Block Scope";
+    const z = "const: Block Scope (Cannot Change)";
+
+    output += x + "\n" + y + "\n" + z + "\n\n";
+
+    function scopeTest() {
+        var a = "var a inside function";
+        let b = "let b inside function";
+        const c = "const c inside function";
+
+        output += "Inside Function:\n";
+        output += a + "\n";
+        output += b + "\n";
+        output += c + "\n\n";
+
+        if (true) {
+            var p = "var p inside block";
+            let q = "let q inside block";
+            const r = "const r inside block";
+
+            output += "Inside Block:\n";
+            output += p + "\n";
+            output += q + "\n";
+            output += r + "\n\n";
+        }
+
+        output += "Outside Block but inside Function:\n";
+        output += p + " (var works outside block)\n";
+
+        try {
+            output += q;
+        } catch {
+            output += "q not accessible (let is block-scoped)\n";
+        }
+
+        try {
+            output += r;
+        } catch {
+            output += "r not accessible (const is block-scoped)\n";
+        }
+    }
+
+    scopeTest();
+
+    // Print final output
+    document.getElementById("result").textContent = output;
+
+</script>
+
+</body>
+</html>

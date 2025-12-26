@@ -1,0 +1,279 @@
+/* =========================
+   Advanced CSS demo styles
+   ========================= */
+
+/* CSS variables for easier theming */
+:root{
+  --bg-color: #f7f9fc;
+  --primary: #0b6efd;
+  --muted: #586374;
+  --card-bg: rgba(255,255,255,0.98);
+  --glass-bg: rgba(255,255,255,0.6);
+  --accent: #ff6b6b;
+  --container-width: 1100px;
+  --gutter: 20px;
+}
+
+/* Global resets & sensible defaults */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* modern recommended default */
+}
+
+body{
+  height: 100%;
+  margin: 0;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg-color);
+  color: #222;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height: 1.45;
+}
+
+/* Container */
+.container{
+  width: min(96%, var(--container-width));
+  margin: 2.25rem auto;
+  padding: 0 var(--gutter);
+}
+
+/* Header */
+.site-header{
+  background: linear-gradient(90deg, rgba(11,110,253,0.95), rgba(6,184,206,0.9));
+  color: white;
+  padding: 1.25rem 0;
+  box-shadow: 0 6px 18px rgba(11,110,253,0.12);
+}
+.header-inner{
+  width: min(96%, var(--container-width));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.site-title{
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.4px;
+}
+.site-subtitle{
+  margin: 0.25rem 0 0;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+/* Hero with background image + gradient overlay */
+.hero{
+  /* background image from Unsplash (royalty-free demo). Replace with your own file or path if offline. */
+  background-image:
+    linear-gradient(to bottom right, rgba(0,0,0,0.30), rgba(11,110,253,0.18)),
+    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=60');
+  background-size: cover;       /* fill, preserving aspect ratio */
+  background-position: center;  /* epic center composition */
+  background-repeat: no-repeat;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 3rem 1rem;
+  border-bottom: 6px solid rgba(255,255,255,0.06);
+}
+
+.hero-content{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border-radius: 12px;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.35);
+}
+.hero h2{
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+}
+.hero p{
+  margin: 0 0 1rem;
+  opacity: 0.95;
+}
+
+/* Button */
+.btn{
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), #06b8ce);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(11,110,253,0.18);
+}
+
+/* Section headings */
+.section-heading{
+  font-size: 1.25rem;
+  margin: 1.25rem 0;
+  color: var(--muted);
+}
+
+/* Card style used multiple places */
+.card{
+  background: var(--card-bg);
+  padding: 1.1rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid rgba(20,20,20,0.04);
+  box-shadow: 0 6px 20px rgba(30,40,60,0.04);
+  margin-bottom: 1.25rem;
+}
+
+/* Explanation card specifics */
+.explanation p{
+  margin: .75rem 0 0;
+  color: #2b3a4a;
+}
+
+/* Boxes row layout */
+.boxes-row{
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 1rem 0 2rem;
+}
+
+/* Demo boxes — same declared width to illustrate box-sizing differences */
+.demo-box{
+  flex: 1 1 300px;         /* responsive, base width 300px */
+  min-width: 260px;
+  max-width: 340px;
+  background: linear-gradient(180deg, white, rgba(246,249,255,0.9));
+  padding: 24px;           /* padding is inside the border */
+  border: 6px solid #dfe7f5;/* visible thick border to illustrate */
+  border-radius: 8px;
+  margin: 16px 0;          /* margin is outside border */
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+/* Hover effect */
+.demo-box:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(12,48,80,0.12);
+}
+
+/* Specific box-sizing examples */
+.content-box{
+  /* content-box is browser default, but we intentionally show it here */
+  box-sizing: content-box;
+  background-image: linear-gradient(135deg, rgba(11,110,253,0.03), rgba(255,255,255,0.0));
+}
+.border-box{
+  box-sizing: border-box;
+  border-color: rgba(6,184,206,0.34);
+  background-image: linear-gradient(135deg, rgba(6,184,206,0.03), rgba(255,255,255,0.0));
+}
+.elevated{
+  box-sizing: border-box;
+  border: 2px solid rgba(10,10,30,0.06);
+  background: var(--glass-bg);
+  border-radius: 12px;
+}
+
+/* Spec box */
+.spec{
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  background: rgba(0,0,0,0.02);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+/* Background examples section */
+.background-examples{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 1.25rem 0 2rem;
+}
+.bg-sample{
+  min-height: 160px;
+  border-radius: 10px;
+  padding: 12px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.08);
+}
+
+/* small pattern repeated */
+.bg-pattern{
+  background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+  background-repeat: repeat;
+  background-color: #2c3e50;
+}
+
+/* hero-like cover */
+.bg-cover{
+  background-image: url('https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?auto=format&fit=crop&w=1200&q=60');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* fixed background (only effective when page scrolls) */
+.bg-fixed{
+  background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1200&q=60');
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+/* Spacing visual demo */
+.spacing-demo .spacing-visual{
+  margin: 1rem 0;
+}
+.spacing-visual .outer{
+  background: linear-gradient(90deg, #eef2ff, #f8f9fb);
+  border: 6px dashed rgba(11,110,253,0.12);
+  padding: 18px;
+  margin: 18px 0;
+  border-radius: 8px;
+}
+.spacing-visual .inner{
+  border: 4px solid rgba(0,0,0,0.06);
+  padding: 16px;
+  margin: 8px;
+}
+.spacing-visual .content{
+  padding: 12px;
+  background: #fff;
+  border: 2px solid rgba(0,0,0,0.04);
+}
+
+/* Footer */
+.site-footer{
+  margin-top: 2rem;
+  padding: 1.25rem 0;
+  background: linear-gradient(180deg, rgba(11,110,253,0.05), rgba(11,110,253,0.02));
+  color: #223;
+  border-top: 1px solid rgba(0,0,0,0.03);
+}
+.site-footer p{
+  margin: 0;
+  text-align: center;
+  color: #394b5a;
+}
+/* Responsive tweaks */
+@media (max-width: 800px){
+  .hero{ min-height: 260px; padding: 2rem 1rem;}
+  .hero h2{ font-size: 1.5rem; }
+  .demo-box { max-width: 100%; padding: 18px; border-width: 4px; }
+  .header-inner{ padding: 0 12px; }
+}
+@media (max-width: 480px){
+  .site-title{ font-size: 1.125rem; }
+  .hero h2{ font-size: 1.25rem; }
+  .boxes-row{ gap: 12px; }
+}
