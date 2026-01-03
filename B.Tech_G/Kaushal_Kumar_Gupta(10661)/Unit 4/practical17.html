@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Listener Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .box {
+      width: 200px;
+      height: 200px;
+      background: #ffcc00;
+      color: #000;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .active {
+      background: #00ffcc;
+      transform: scale(1.1);
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      background: #ff6b6b;
+      color: white;
+    }
+
+    button:hover {
+      background: #ff8787;
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+      margin-top: 20px;
+      width: 250px;
+    }
+
+    .output {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #ffdede;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎯 Event Listeners Demo</h1>
+
+  <div id="box" class="box">
+    Hover / Click Me
+  </div>
+
+  <button id="addBtn">Add Click Event</button>
+  <button id="removeBtn">Remove Click Event</button>
+
+  <br>
+
+  <input type="text" id="keyInput" placeholder="Type something..." />
+  <div class="output" id="keyOutput">Keyboard output will appear here</div>
+
+  <script>
+    const box = document.getElementById("box");
+    const addBtn = document.getElementById("addBtn");
+    const removeBtn = document.getElementById("removeBtn");
+    const keyInput = document.getElementById("keyInput");
+    const keyOutput = document.getElementById("keyOutput");
+
+    // Mouse click handler
+    function boxClickHandler() {
+      box.classList.toggle("active");
+      box.innerHTML = "Clicked!";
+    }
+
+    // Mouse hover events
+    box.addEventListener("mouseover", () => {
+      box.innerHTML = "Mouse Over";
+    });
+
+    box.addEventListener("mouseout", () => {
+      box.innerHTML = "Hover / Click Me";
+    });
+
+    // Add click event
+    addBtn.addEventListener("click", () => {
+      box.addEventListener("click", boxClickHandler);
+      alert("Click event added!");
+    });
+
+    // Remove click event
+    removeBtn.addEventListener("click", () => {
+      box.removeEventListener("click", boxClickHandler);
+      alert("Click event removed!");
+    });
+
+    // Keyboard events
+    keyInput.addEventListener("keydown", (event) => {
+      keyOutput.innerHTML = "Key Down: " + event.key;
+    });
+
+    keyInput.addEventListener("keyup", (event) => {
+      keyOutput.innerHTML = "Key Released: " + event.key;
+    });
+  </script>
+
+</body>
+</html>

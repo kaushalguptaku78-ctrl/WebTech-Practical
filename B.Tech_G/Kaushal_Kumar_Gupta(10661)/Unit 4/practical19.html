@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Canvas Drag & Drop Editor</title>
+
+<style>
+/* ===============================
+   Global Layout
+================================ */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f4f6fb, #e9ecf2);
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+/* ===============================
+   Editor Card
+================================ */
+.editor {
+  width: 760px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+}
+
+.badge {
+  background: #7b61ff;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* ===============================
+   Canvas Frame
+================================ */
+.canvas-frame {
+  background: #f9fafc;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e3e6ee;
+}
+
+canvas {
+  display: block;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 10px;
+  cursor: grab;
+}
+
+canvas:active {
+  cursor: grabbing;
+}
+</style>
+</head>
+
+<body>
+
+<div class="editor">
+  <div class="header">
+    <h1>Drag & Drop Canvas Editor</h1>
+    <span class="badge">Canva Style</span>
+  </div>
+
+  <div class="canvas-frame">
+    <canvas id="editorCanvas" width="680" height="380"></canvas>
+  </div>
+</div>
+
+<script>
+/* ===============================
+   Canvas Setup
+================================ */
+const canvas = document.getElementById("editorCanvas");
+const ctx = canvas.getContext("2d");
+
+/* ===============================
+   Shape Model
+================================ */
+class Shape {
+  constructor(x, y, w, h, colors) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.colors = colors;
+    this.isDragging = false;
+  }
+
+  draw() {
+    const gradient = ctx.createLinearGradient(
+      this.x,
+      this.y,
+      this.x + this.w,
+      this.y + this.h
+    );
+
+    gradient.addColorStop(0, this.colors[0]);
+    gradient.addColorStop(1, this.colors[1]);
+
+    ctx.fillStyle = gradient;
+    ctx.shadowColor = "rgba(0,0,0,0.15)";
+    ctx.shadowBlur = 10;
+
+    ctx.beginPath();
+    ctx.roundRect(this.x, this.y, this.w, this.h, 18);
+    ctx.fill();
+
+    ctx.shadowBlur = 0;
+  }
+
+  contains(mx, my) {
+    return (
+      mx >= this.x &&
+      mx <= this.x + this.w &&
+      my >= this.y &&
+      my <= this.y + this.h
+    );
+  }
+}
+
+/* ===============================
+   Shapes List
+================================ */
+const shapes = [
+  new Shape(80, 120, 140, 120, ["#7b61ff", "#5ad6c6"]),
+  new Shape(300, 100, 160, 100, ["#ff8a65", "#ffd180"])
+];
+
+let activeShape = null;
+let offsetX = 0;
+let offsetY = 0;
+
+/* ===============================
+   Background Grid
+================================ */
+function drawGrid() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.strokeStyle = "#eef0f5";
+  ctx.lineWidth = 1;
+
+  for (let x = 0; x < canvas.width; x += 40) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, canvas.height);
+    ctx.stroke();
+  }
+
+  for (let y = 0; y < canvas.height; y += 40) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(canvas.width, y);
+    ctx.stroke();
+  }
+}
+
+/* ===============================
+   Render Loop
+================================ */
+function render() {
+  drawGrid();
+  shapes.forEach(shape => shape.draw());
+  requestAnimationFrame(render);
+}
+render();
+
+/* ===============================
+   Mouse Events
+================================ */
+canvas.addEventListener("mousedown", e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+
+  for (let i = shapes.length - 1; i >= 0; i--) {
+    if (shapes[i].contains(mx, my)) {
+      activeShape = shapes[i];
+      offsetX = mx - activeShape.x;
+      offsetY = my - activeShape.y;
+
+      // Bring selected shape to front
+      shapes.splice(i, 1);
+      shapes.push(activeShape);
+      break;
+    }
+  }
+});
+
+canvas.addEventListener("mousemove", e => {
+  if (!activeShape) return;
+
+  const rect = canvas.getBoundingClientRect();
+  activeShape.x = e.clientX - rect.left - offsetX;
+  activeShape.y = e.clientY - rect.top - offsetY;
+});
+
+canvas.addEventListener("mouseup", () => {
+  activeShape = null;
+});
+
+canvas.addEventListener("mouseleave", () => {
+  activeShape = null;
+});
+</script>
+
+</body>
+</html>-
